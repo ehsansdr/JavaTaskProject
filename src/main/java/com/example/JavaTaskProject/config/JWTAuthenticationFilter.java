@@ -6,6 +6,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,6 +26,7 @@ import java.io.IOException;
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(
@@ -41,8 +47,40 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         // try to extract token from this authentication header
         jwt = authHeader.substring(7);  // if we count "Bearer " the count is 7
-        // todo : jwtService.extractUsername(jwt); // we need the class that can manipulate this jwt token
-        userEmail = jwtService.extractUsername(jwt);
+
+        // we need the class that can manipulate this jwt token
+        userEmail = jwtService.extractUsername(jwt); // we extract our username (email)
+
+
+        //todo : so we should continue our validation process
+
+
+        // in this if we check that:
+        // user email is not null and user is not authenticated yet (if the Authentication is null means the user is not yet authenticated)
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            // so we get UserDetails from database
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+
+
+            // next step is to validate the token is still valid or not by this if
+            if (jwtService.isTokenValid(jwt, userDetails) ) {
+
+                // so of this block execute the token is valid
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,  // we do not have credential
+                        userDetails.getAuthorities()
+                );
+                authToken.setDetails(  // here I want to build the details out of our  request
+                        new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+                // final step is to update SecurityContextHolder
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
+        }
+
+        /** after these if that check and handle the username and authentication have this statement */
+        filterChain.doFilter(request, response); // we need always to pass hand to the next filters to be executed
     }
 
 
