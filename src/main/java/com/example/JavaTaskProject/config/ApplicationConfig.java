@@ -29,26 +29,24 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() { // AuthenticationProvider always from spring framework package
+        // AuthenticationProvider is data access provider responsible to fetch user detail and also encode password and ../
+
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        // within this AuthenticationProvider we need to specify few properties:
+
+        // we need to declare which user details we need to use in order fetch information about our user
         authProvider.setUserDetailsService(userDetailsService());
+        // we need to declare which password encoder we use in our application so we need to specify that use correct algorithm
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
     @Bean
-    public AuditorAware<Integer> auditorAware() {
-        return new ApplicationAuditAware();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        //
+        return new BCryptPasswordEncoder(); // so we create our password encoder bean
     }
 
 }
