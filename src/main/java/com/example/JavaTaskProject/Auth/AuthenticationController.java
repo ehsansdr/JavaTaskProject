@@ -25,6 +25,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
+        // in this part we expect get token
         return ResponseEntity.ok(service.register(request));
     }
 

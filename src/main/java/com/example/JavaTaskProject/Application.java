@@ -8,6 +8,15 @@ public class Application {
 	// for decoding the json
 	// https://jwt.io/
 	public static void main(String[] args) {
+		/** in src/main/java/com/example/JavaTaskProject/config/JwtService.java
+		 * i comment todo
+		 * so in that part i declare the duration 30 min
+		 */
+
+		/** in src/main/java/com/example/JavaTaskProject/Auth/AuthenticationController.java register()
+		 *user can get token when register new record
+		* */
+
 		SpringApplication.run(Application.class, args);
 	}
 

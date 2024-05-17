@@ -1,29 +1,33 @@
-# (the name ot database,not server the item that you see in database folder in pgadmin4)
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/JavaTaskDB # (the name ot database)
-    username: postgres    # (the username that default is "postgres")
-    password: postgres    # (the password that i set is "postgres")
-jpa:
-  hibernate:
-    ddl-auto: update
-  # by defulat this is false
-  how-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
-  properties:
-    hibernate:
-      format_sql: true
-  database: postgresql
-  database-platform: org.hibernate.dialect.PostgreSQLDialect
+### PostgreSQL connecting
 
-
+## (the name ot database,not server the item that you see in database folder in pgadmin4)
 #spring:
 #  datasource:
-#    url: jdbc:mysql://localhost:3306/javataskdb # (database or schema name ,not server name)
-#    username: root # (the user name of ,mysql server ,not database or schema)
-#    password:      # (the password of ,mysql server ,not database or schema)
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#  jpa:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/JavaTaskDB # (the name ot database)
+#    username: postgres    # (the username that default is "postgres")
+#    password: postgres    # (the password that i set is "postgres")
+#jpa:
+#  hibernate:
+#    ddl-auto: update
+#  # by defulat this is false
+#  how-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
+#  properties:
 #    hibernate:
-#      ddl-auto: update
-#    show-sql: true
+#      format_sql: true
+#  database: postgresql
+#  database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+### Mysql connecting
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/javataskdb # (database or schema name ,not server name)
+    username: root # (the user name of ,mysql server ,not database or schema)
+    password:      # (the password of ,mysql server ,not database or schema)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

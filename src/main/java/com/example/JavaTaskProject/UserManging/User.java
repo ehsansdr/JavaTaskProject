@@ -33,8 +33,6 @@ public class User implements UserDetails {  // each time you want to work with s
        because UserDetails can find the email and password variable na dwe do not need to override the
        spatial method, UserDetails will find the email and password related field and no need to have extra code
     */
-    @UniqueElements(message = "Email must be unique")
-    @Email
     private String email;
 
      /**

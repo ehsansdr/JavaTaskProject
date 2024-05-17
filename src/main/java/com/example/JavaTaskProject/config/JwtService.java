@@ -18,6 +18,9 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+    /**  in this class we declare the validation duration */
+
+
     // you can see the token in this site
     // https://jwt.io/   (51:00)
 
@@ -51,7 +54,10 @@ public class JwtService {
                 .builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis())) // the issue date (when token create I think)
+                //*******************
+                // todo : task to answer we decalre time here
                 .setExpiration(new Date(System.currentTimeMillis() + (1000  * 60 * 60))) // 1s * 60(1 minute contains 60 sec) * 60(minutes)
+                //*******************
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact(); // generate and create token
     }

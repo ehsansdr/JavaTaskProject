@@ -43,7 +43,7 @@ public class SecurityConfiguration {
                 .authenticated()
                 .and()      // how we can configure or session management (1:31:00)
                 .sessionManagement()
-                .sessionCreationPolicy(STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()      // here we need which authentication provider we need to use
                 .authenticationProvider(authenticationProvider) // be careful you should create that
                 .addFilterBefore(jwtAuthFilter,UsernamePasswordAuthenticationFilter.class);  /** I want now to use JWT filter that we just created */
