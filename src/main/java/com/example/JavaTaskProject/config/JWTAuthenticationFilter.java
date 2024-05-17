@@ -63,7 +63,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
 
             // next step is to validate the token is still valid or not by this if
-            if (jwtService.isTokenValid(jwt, userDetails) ) {
+            if (jwtService.isTokenValid(jwt, userDetails) /*&& isTokenValid*/) {
 
                 // so of this block execute the token is valid
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
