@@ -1,10 +1,8 @@
 package UserManging;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,13 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
-
 @Entity
 @Table(name = "Users")
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class User implements UserDetails {  // each time you want to work with spring security you need to
                                             // ensure UserDetails interface in order to make security easy
 
@@ -35,6 +34,7 @@ public class User implements UserDetails {  // each time you want to work with s
        spatial method, UserDetails will find the email and password related field and no need to have extra code
     */
     @UniqueElements(message = "Email must be unique")
+    @Email
     private String email;
 
      /**
@@ -44,7 +44,7 @@ public class User implements UserDetails {  // each time you want to work with s
 
     // because it is enum we need this
     @Enumerated(EnumType.STRING)
-    private Role role;      //because of Authority i need to get user and admin role to know how limit they should have
+    private Role role;      //because of Authority, i need to get user and admin role to know how limit they should have
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
