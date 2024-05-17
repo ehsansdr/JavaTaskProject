@@ -43,6 +43,16 @@ public class ApplicationConfig {
         return authProvider;
     }
 
+
+
+
+    // this AuthenticationConfiguration hold already the information about the AuthenticationManager
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception {   // do not forget to add this throw
+        return config.getAuthenticationManager();
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         //
