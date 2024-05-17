@@ -31,6 +31,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
+
         // Bearer token should always shoud start with key word "Bearer "
         if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
             // if we do not have these two condition :
@@ -42,9 +43,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);  // if we count "Bearer " the count is 7
         // todo : jwtService.extractUsername(jwt); // we need the class that can manipulate this jwt token
         userEmail = jwtService.extractUsername(jwt);
-
-
-
     }
 
 
