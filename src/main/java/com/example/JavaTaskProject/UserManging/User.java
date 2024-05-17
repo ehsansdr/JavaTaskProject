@@ -1,4 +1,4 @@
-package UserManging;
+package com.example.JavaTaskProject.UserManging;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,17 +1,15 @@
 package com.example.JavaTaskProject.Auth;
 
 
-import UserManging.Role;
-import UserManging.User;
-import UserManging.UserRepository;
+import com.example.JavaTaskProject.UserManging.Role;
+import com.example.JavaTaskProject.UserManging.User;
+import com.example.JavaTaskProject.UserManging.UserRepository;
 import com.example.JavaTaskProject.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.net.URI;
 
 @Service
 @RequiredArgsConstructor

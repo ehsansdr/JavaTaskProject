@@ -1,4 +1,4 @@
-package UserManging;
+package com.example.JavaTaskProject.UserManging;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;

@@ -1,10 +1,9 @@
 package com.example.JavaTaskProject.config;
 
-import UserManging.UserRepository;
+import com.example.JavaTaskProject.UserManging.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -43,15 +42,12 @@ public class ApplicationConfig {
     }
 
 
-
-
     // this AuthenticationConfiguration hold already the information about the AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {   // do not forget to add this throw
         return config.getAuthenticationManager();
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); // so we create our password encoder bean

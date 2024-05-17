@@ -1,4 +1,4 @@
-package UserManging;
+package com.example.JavaTaskProject.UserManging;
 
 public enum Role {
 
