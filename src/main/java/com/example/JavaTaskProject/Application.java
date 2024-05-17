@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application {
-	// for decoding the json
+	// for decoding the token in this site
 	// https://jwt.io/
 	public static void main(String[] args) {
 		/** in src/main/java/com/example/JavaTaskProject/config/JwtService.java

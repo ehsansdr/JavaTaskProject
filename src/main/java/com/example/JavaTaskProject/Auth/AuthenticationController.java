@@ -26,6 +26,9 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ) {
         // in this part we expect get token
+        // for decoding the token in this site
+        // https://jwt.io/
+
         return ResponseEntity.ok(service.register(request));
     }
 
