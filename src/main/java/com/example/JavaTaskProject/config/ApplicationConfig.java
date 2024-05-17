@@ -27,7 +27,6 @@ public class ApplicationConfig {
                 // if we do not ge any email in optional we make spring to do this : throwing exception
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));  // use lambda instead of making object and creating hole class
     }
-
     @Bean
     public AuthenticationProvider authenticationProvider() { // AuthenticationProvider always from spring framework package
         // AuthenticationProvider is data access provider responsible to fetch user detail and also encode password and ../
@@ -55,7 +54,6 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        //
         return new BCryptPasswordEncoder(); // so we create our password encoder bean
     }
 
